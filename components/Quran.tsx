@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
+import "../styles/globals.css"; 
+import Navbar from "../components/Navbar"; 
 
 interface Surah {
   number: number;

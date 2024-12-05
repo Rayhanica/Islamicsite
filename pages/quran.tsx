@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import "../styles/globals.css"; 
+import Navbar from "../components/Navbar";
 
 // Define the API URL and Edition (You can change edition if needed)
 const API_URL = "http://api.alquran.cloud/v1/quran/quran-uthmani";

@@ -1,10 +1,10 @@
-"use client";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar"; // Import your Navbar component
+import "../styles/globals.css"; 
+import Navbar from "../components/Navbar";
 
-// Define the structure of the prayer times object
-interface PrayerTimes {
+// Define the structure of prayer times
+interface PrayerTimesData {
   Fajr: string;
   Dhuhr: string;
   Asr: string;
@@ -12,105 +12,161 @@ interface PrayerTimes {
   Isha: string;
 }
 
-const PrayerTimesPage = () => {
-  const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null); // Store prayer times with type
-  const [city, setCity] = useState("New York"); // Default city
-  const [loading, setLoading] = useState(false); // Loading state
+const PrayerTimes = () => {
+  const [prayerTimes, setPrayerTimes] = useState<PrayerTimesData | null>(null);
+  const [nextPrayer, setNextPrayer] = useState<string>("");
+  const [countdown, setCountdown] = useState<string>("");
 
-  // Function to convert 24-hour time to 12-hour AM/PM format
-  const formatTimeTo12Hour = (time: string) => {
-    const [hour, minute] = time.split(":").map(Number);
-    const suffix = hour >= 12 ? "PM" : "AM";
-    const hour12 = hour % 12 || 12;
-    const minuteFormatted = minute < 10 ? `0${minute}` : minute;
-    return `${hour12}:${minuteFormatted} ${suffix}`;
-  };
-
-  // Fetch prayer times based on city
-  const fetchPrayerTimes = async (city: string) => {
-    setLoading(true);
+  // Fetch prayer times from Aladhan API
+  const fetchPrayerTimes = async () => {
     try {
-      // Fetch prayer times from Aladhan API
-      const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity`, {
+      const response = await axios.get("https://api.aladhan.com/v1/timingsByCity", {
         params: {
-          city: city,
-          country: "USA", // Replace with your country
-          method: 2, // You can change method to get different calculation methods
+          city: "New York", // Replace with your city
+          country: "USA",   // Replace with your country
+          method: 2,        // Islamic calculation method
         },
       });
-      const timings = response.data.data.timings;
-
-      // Convert all prayer times to 12-hour AM/PM format
-      const formattedTimes: PrayerTimes = {
-        Fajr: formatTimeTo12Hour(timings.Fajr),
-        Dhuhr: formatTimeTo12Hour(timings.Dhuhr),
-        Asr: formatTimeTo12Hour(timings.Asr),
-        Maghrib: formatTimeTo12Hour(timings.Maghrib),
-        Isha: formatTimeTo12Hour(timings.Isha),
-      };
-
-      setPrayerTimes(formattedTimes);
+      setPrayerTimes(response.data.data.timings);
     } catch (error) {
       console.error("Error fetching prayer times:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
-  // Use effect to fetch prayer times when the page loads
+  // Format time to 12-hour format with AM/PM
+  const formatTime = (time: string) => {
+    const [hours, minutes] = time.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
+  // Calculate countdown to next prayer
+  const calculateCountdown = () => {
+    if (prayerTimes) {
+      const now = new Date();
+      const prayerNames = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+      let nextPrayerTime: Date | null = null;
+      let nextPrayerName = "";
+
+      // Find the next prayer time
+      for (let i = 0; i < prayerNames.length; i++) {
+        const prayerName = prayerNames[i];
+        const prayerTime = prayerTimes[prayerName as keyof PrayerTimesData];
+
+        if (!prayerTime) continue;
+
+        const [hours, minutes] = prayerTime.split(":").map(Number);
+        const prayerDate = new Date(now);
+        prayerDate.setHours(hours, minutes, 0, 0);
+
+        // Check if the prayer time is in the future
+        if (prayerDate > now) {
+          nextPrayerTime = prayerDate;
+          nextPrayerName = prayerName;
+          break;
+        }
+      }
+
+      // If no next prayer is found, set it to Fajr of the next day
+      if (!nextPrayerTime) {
+        const [fajrHours, fajrMinutes] = prayerTimes.Fajr.split(":").map(Number);
+        const tomorrow = new Date(now);
+        tomorrow.setDate(now.getDate() + 1);
+        tomorrow.setHours(fajrHours, fajrMinutes, 0, 0);
+        nextPrayerTime = tomorrow;
+        nextPrayerName = "Fajr";
+      }
+
+      setNextPrayer(nextPrayerName);
+
+      // Calculate time difference for the countdown
+      const timeDiff = nextPrayerTime.getTime() - now.getTime();
+      const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
+      const minutesLeft = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const secondsLeft = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      // Update countdown
+      setCountdown(
+        `${String(hoursLeft).padStart(2, "0")}:${String(minutesLeft).padStart(2, "0")}:${String(secondsLeft).padStart(2, "0")}`
+      );
+    }
+  };
+
+  // Fetch prayer times on mount and start countdown calculation
   useEffect(() => {
-    fetchPrayerTimes(city);
-  }, [city]);
+    fetchPrayerTimes();
+    const timer = setInterval(calculateCountdown, 1000); // Update countdown every second
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [prayerTimes]);
 
   return (
-    <div className="bg-gradient-to-b from-blue-700 via-blue-800 to-blue-900 min-h-screen text-white">
-      <Navbar />
-      <div className="container mx-auto p-6">
-        <h1 className="text-5xl font-serif font-extrabold text-gold-600 text-center mb-8">
-          Prayer Times in {city}
-        </h1>
-
-        {/* Search Input for City */}
-        <div className="flex justify-center mb-8">
-          <input
-            type="text"
-            placeholder="Enter City"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="w-full max-w-lg p-3 rounded-lg text-gray-800 focus:outline-none shadow-lg"
-          />
+    <div className="min-h-screen bg-gradient-to-b from-blue-800 via-teal-900 to-gray-900 text-white">
+      {/* Navbar */}
+      <div className="bg-black p-4 text-white">
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-serif font-bold">Islamic Website</h1>
+          <nav>
+            <ul className="flex space-x-6">
+              <li><a href="/" className="hover:text-teal-400">Home</a></li>
+              <li><a href="/prayertimes" className="hover:text-teal-400">Prayer Times</a></li>
+              <li><a href="/about" className="hover:text-teal-400">About</a></li>
+            </ul>
+          </nav>
         </div>
-
-        {/* Display Prayer Times */}
-        {loading ? (
-          <p className="text-center text-lg">Loading...</p>
-        ) : (
-          <div className="space-y-6">
-            {prayerTimes ? (
-              <ul>
-                {Object.keys(prayerTimes).map((prayer) => (
-                  <li
-                    key={prayer}
-                    className="p-6 border rounded-lg shadow-md bg-white text-gray-800 hover:bg-gray-50"
-                  >
-                    <h2 className="text-2xl font-serif font-semibold text-gold-600">
-                      {prayer}
-                    </h2>
-                    <p className="text-gray-700 mt-2">{prayerTimes[prayer as keyof PrayerTimes]}</p>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-center text-lg">No data available for this location.</p>
-            )}
-          </div>
-        )}
       </div>
+
+      {/* Countdown for Next Prayer */}
+      <div className="text-center py-4 mt-6 bg-opacity-70 bg-black">
+        <div className="text-2xl font-semibold">
+          <p>Next Prayer: {nextPrayer}</p>
+          <p>Countdown: {countdown}</p>
+        </div>
+      </div>
+
+      {/* Prayer Times Header */}
+      <div className="text-center py-4 bg-opacity-70 bg-black">
+        <h1 className="text-3xl font-serif font-bold">Prayer Times</h1>
+      </div>
+
+      {/* Prayer Times Table */}
+      {prayerTimes && (
+        <div className="container mx-auto p-6">
+          <table className="min-w-full text-center table-auto bg-white text-black rounded-lg shadow-lg">
+            <thead>
+              <tr className="bg-teal-500">
+                <th className="py-2 px-4">Prayer</th>
+                <th className="py-2 px-4">Time (AM/PM)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(prayerTimes).map(([prayer, time]) => (
+                <tr key={prayer}>
+                  <td className="py-2 px-4">{prayer}</td>
+                  <td className="py-2 px-4">{formatTime(time as string)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
 
-export default PrayerTimesPage;
+export default PrayerTimes;
+
+
+
+
+
+
+
+
+
 
 
 

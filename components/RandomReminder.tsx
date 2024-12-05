@@ -4,6 +4,66 @@ import { useEffect, useState } from "react";
 const RandomReminder = () => {
   // List of 100 reminders with source citations
   const reminders = [
+    {
+      text: "“Whoever shows you the way to goodness, then he will have the same reward as the one who does it.” (Sahih Muslim)",
+      source: "Sahih Muslim",
+    },
+    {
+      text: "“Verily, with hardship comes ease.” (94:6)",
+      source: "Quran 94:6",
+    },
+    {
+      text: "“If you show kindness to others, Allah will show kindness to you.” (Sahih Bukhari)",
+      source: "Sahih Bukhari",
+    },
+    {
+      text: "“The strong person is not the one who can overpower others, but the one who can control themselves when angry.” (Sahih Bukhari)",
+      source: "Sahih Bukhari",
+    },
+    {
+      text: "Did you know? The Quran was revealed over a period of 23 years.",
+      source: "Fun Fact",
+    },
+    {
+      text: "Fun Fact: The word 'Islam' means 'peace' in Arabic.",
+      source: "Fun Fact",
+    },
+    {
+      text: "Reminder: Always say Bismillah before starting anything. It brings blessings.",
+      source: "Reminder",
+    },
+    {
+      text: "“Do not grieve, indeed Allah is with us.” (At-Tawbah 9:40)",
+      source: "Quran 9:40",
+    },
+    {
+      text: "Fun Fact: The Quran has 114 chapters, known as Surahs.",
+      source: "Fun Fact",
+    },
+    {
+      text: "Reminder: Make dua, it is the weapon of the believer.",
+      source: "Reminder",
+    },
+    {
+      text: "“The best of people are those who are most beneficial to others.” (Sahih al-Jami)",
+      source: "Sahih al-Jami",
+    },
+    {
+      text: "Fun Fact: Prophet Muhammad (PBUH) was the last and final Prophet in Islam.",
+      source: "Fun Fact",
+    },
+    {
+      text: "Reminder: Charity does not decrease wealth, it increases it.",
+      source: "Reminder",
+    },
+    {
+      text: "“Allah does not burden a soul beyond that it can bear.” (Quran 2:286)",
+      source: "Quran 2:286",
+    },
+    {
+      text: "Did you know? The first revelation to Prophet Muhammad (PBUH) was in the Cave of Hira.",
+      source: "Fun Fact",
+    },
     { text: "Stay humble and patient.", source: "Prophet Muhammad (PBUH)" },
     { text: "Trust in Allah’s plan.", source: "Quran, Surah At-Tawbah (9:51)" },
     { text: "Make Dua daily for guidance.", source: "Prophet Muhammad (PBUH)" },
@@ -77,7 +137,11 @@ const RandomReminder = () => {
     { text: "Take care of the rights of others as you would your own.", source: "Prophet Muhammad (PBUH)" },
     { text: "Be patient in times of difficulty, for it is a test from Allah.", source: "Prophet Muhammad (PBUH)" },
     { text: "The Quran is a light for the believer’s heart.", source: "Quran, Surah Al-Baqarah (2:257)" },
-    { text: "Trust in Allah and He will provide for you.", source: "Quran, Surah At-Tawbah (9:51)" }
+    { text: "Trust in Allah and He will provide for you.", source: "Quran, Surah At-Tawbah (9:51)" },
+    {
+      text: "“The best among you are those who have the best manners and character.” (Sahih Bukhari)",
+      source: "Sahih Bukhari",
+    },
   ];
 
   // State to hold the current reminder
