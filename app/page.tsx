@@ -613,9 +613,13 @@ const HomePage = () => {
         <div className="text-xl mt-2">{islamicDate} (Hijri Date)</div>
       </div>
 
-      <div className="text-center py-4 bg-opacity-70 bg-black mt-4">
-        <div className={`text-3xl font-bold ${countdownColor}`}>Next Prayer: {nextPrayer}</div>
-        <div className={`text-2xl mt-2 font-semibold ${countdownColor}`}>{countdown}</div>
+      <div className="text-center py-4 mt-6 bg-opacity-70 bg-black">
+        <div className="text-2xl font-semibold">
+          <p>
+            Next Prayer: {nextPrayer} at {nextPrayerTime}
+          </p>
+          <p>Countdown: {countdown}</p>
+        </div>
       </div>
 
       

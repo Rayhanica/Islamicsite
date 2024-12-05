@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 const RandomReminder = () => {
-  // List of 100 reminders with source citations
+  // List reminders with source citations
   const reminders = [
     {
       text: "“Whoever shows you the way to goodness, then he will have the same reward as the one who does it.” (Sahih Muslim)",
