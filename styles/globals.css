@@ -19,4 +19,48 @@ button {
 
 button:hover {
   background-color: #38b2ac;
+
+}
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+}
+/* In globals.css or your desired CSS file */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+/* In globals.css or your desired CSS file */
+.bg-blue-700 {
+  background-color: #1D4ED8; /* You can use another color here */
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-gold-600 {
+  color: #FBBF24; /* Gold color */
 }
