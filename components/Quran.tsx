@@ -1,55 +1,26 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import axios from "axios";
-import "../styles/globals.css"; 
-import Navbar from "../components/Navbar"; 
-
-interface Surah {
-  number: number;
-  name: string;
-  englishName: string;
-}
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Navbar from "./Navbar"; // Import Navbar
+import "../styles/globals.css";
 
 const Quran = () => {
-  const [surahs, setSurahs] = useState<Surah[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [surahs, setSurahs] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchSurahs = async () => {
-      try {
-        const response = await axios.get("https://api.alquran.cloud/v1/quran/edition/quran-uthmani");
-        setSurahs(response.data.data.surahs); // Extract the Surah list
-      } catch (error) {
-        setError("Failed to load Surahs. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
+      const response = await axios.get('https://api.alquran.cloud/v1/surah');
+      setSurahs(response.data.data);
     };
-
     fetchSurahs();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
-    <div>
-      <h1 className="text-4xl text-center font-bold mb-6">List of Surahs</h1>
+    <div className="p-4 bg-gray-100 rounded-lg shadow">
+      <h1 className="text-xl font-bold mb-2">Quran Surahs</h1>
       <ul>
         {surahs.map((surah) => (
-          <li key={surah.number} className="mb-4">
-            <Link
-              href={`/quran/surah/${surah.number}`}
-              className="text-xl font-semibold text-blue-600 hover:underline"
-            >
-              {surah.name} ({surah.englishName})
-            </Link>
+          <li key={surah.number} className="mb-1">
+            {surah.number}. {surah.englishName} ({surah.englishNameTranslation})
           </li>
         ))}
       </ul>
@@ -58,6 +29,10 @@ const Quran = () => {
 };
 
 export default Quran;
+
+
+
+
 
 
 

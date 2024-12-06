@@ -3,109 +3,20 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* Apply classical Islamic theme to body */
-  body {
-    font-family: 'Amiri', serif;
-    background-color: #f7f7f7; /* Light background color */
-    color: #333;
-  }
-
-  h1, h2, h3 {
-    color: #d4af37; /* Rich gold color for headings */
-  }
-
-  .bg-gradient-to-b {
-    background-image: linear-gradient(to bottom, #006400, #003d2f, #002a1f);
-  }
-
-  .bg-gold-500 {
-    background-color: #d4af37;
-  }
-
-  .bg-gold-600:hover {
-    background-color: #c29b29;
-  }
-
-  /* Apply to the Surah cards */
-  .surah-card {
-    background-color: #ffffff;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .surah-card:hover {
-    background-color: #f9fafb;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .bg-green-700 {
-    background-color: #1a3d4d; /* Dark Green */
-  }
-
-  .bg-green-800 {
-    background-color: #145b3b; /* Deeper Green */
-  }
-
-  .bg-green-900 {
-    background-color: #0d2f1a; /* Even darker Green */
-  }
-
-  /* Specific styles for text */
-  .text-gold-600 {
-    color: #d4af37;
-  }
-
-  .text-gray-700 {
-    color: #4a4a4a;
-  }
+body {
+  font-family: "Georgia", serif;
+  background-color: #f3f4f6;
+  color: #2d3748;
 }
 
-@font-face {
-  font-family: 'Amiri';
-  src: url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+h1, h2, h3 {
+  font-family: "Amiri", serif;
 }
 
-/* Add in globals.css */
-.text-gold-600 {
-  color: #ffd700;
+button {
+  transition: background-color 0.3s ease;
 }
 
-.bg-gradient-to-b {
-  background: linear-gradient(to bottom, #1d4ed8, #1e3a8a);
-}
-
-/* In globals.css or your desired CSS file */
-/* Slower scrolling for prayer times */
-@keyframes slow-marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.animate-slow-marquee {
-  animation: slow-marquee 30s linear infinite; /* Slower scrolling speed */
-}
-
-/* Ensure the random reminder is at the bottom */
-.reminder-container {
-  background-color: #4CAF50; /* Green color */
-  padding: 10px;
-  margin-top: 50px; /* Adds space above the reminder */
-  text-align: center;
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  font-size: 18px;
-  font-style: italic;
-}
-
-.reminder-text {
-  color: white;
-  font-size: 20px;
+button:hover {
+  background-color: #38b2ac;
 }

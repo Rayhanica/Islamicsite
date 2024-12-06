@@ -1,85 +1,85 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import "../styles/globals.css"; 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar"; // Navbar component
+import "../styles/globals.css";
 
-// Define the API URL and Edition (You can change edition if needed)
-const API_URL = "http://api.alquran.cloud/v1/quran/quran-uthmani";
+interface Surah {
+  number: number;
+  englishName: string;
+  englishNameTranslation: string;
+  revelationType: string;
+}
 
 const QuranPage = () => {
-  const [surahs, setSurahs] = useState<any[]>([]); // Store surahs list
-  const [loading, setLoading] = useState<boolean>(false); // Loading state
-  const [error, setError] = useState<string>(""); // Error state
+  const [surahs, setSurahs] = useState<Surah[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredSurahs, setFilteredSurahs] = useState<Surah[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Function to fetch Surahs from the API
   useEffect(() => {
     const fetchSurahs = async () => {
-      setLoading(true); // Set loading to true when fetching data
       try {
-        // Making the GET request to the API
-        const response = await axios.get(API_URL);
-
-        // Extract surah data from the response and set it in state
-        if (response.data && response.data.data && response.data.data.surahs) {
-          setSurahs(response.data.data.surahs); // Assuming the surah list is in `data.surahs`
-        } else {
-          setError("Surah data not found in response.");
-        }
-      } catch (err: any) {
-        // Catch and handle any errors during the API call
-        setError("Failed to load Surahs. Please try again later.");
-        console.error("API request error: ", err.message);
+        const response = await axios.get("https://api.sahih-international.com/v1/surahs");
+        setSurahs(response.data.data);
+        setFilteredSurahs(response.data.data);
+      } catch (error) {
+        console.error("Error fetching Surahs:", error);
       } finally {
-        setLoading(false); // Set loading to false after the API call finishes
+        setLoading(false);
       }
     };
-
-    fetchSurahs(); // Call the function to fetch surahs
+    fetchSurahs();
   }, []);
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value.toLowerCase();
+    setSearchTerm(query);
+    const results = surahs.filter(
+      (surah) =>
+        surah.englishName.toLowerCase().includes(query) ||
+        surah.englishNameTranslation.toLowerCase().includes(query)
+    );
+    setFilteredSurahs(results);
+  };
+
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">Quran</h1>
-      
-      {/* Loading state */}
-      {loading ? (
-        <div className="text-center">Loading Surahs...</div>
-      ) : error ? (
-        // Show error message if something went wrong
-        <div className="text-red-600 text-center">{error}</div>
-      ) : (
-        <div>
-          <h2 className="text-xl font-semibold mb-4">List of Surahs</h2>
-          <ul className="space-y-2">
-            {/* Map through surahs and display them */}
-            {surahs.length > 0 ? (
-              surahs.map((surah: any) => (
-                <li key={surah.number} className="flex items-center justify-between">
-                  <Link
-                    href={`/quran/surah/${surah.number}`}
-                    className="text-blue-500 hover:underline text-lg"
-                  >
-                    {surah.name} ({surah.englishName})
-                  </Link>
-                  <span className="text-gray-500">Ayahs: {surah.numberOfAyahs}</span>
-                </li>
-              ))
-            ) : (
-              <div className="text-center text-gray-500">No Surahs found.</div>
-            )}
+    <div className="min-h-screen bg-gray-100 text-gray-900">
+      <Navbar />
+      <div className="container mx-auto py-8">
+        <h1 className="text-4xl font-bold text-center mb-6">Quran Surahs</h1>
+        <input
+          type="text"
+          placeholder="Search for a surah..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="w-full p-3 mb-6 border rounded-lg shadow"
+        />
+        {loading ? (
+          <p className="text-center text-lg">Loading Surahs...</p>
+        ) : (
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredSurahs.map((surah) => (
+              <li key={surah.number} className="p-4 bg-white rounded shadow hover:bg-gray-200">
+                <Link href={`/quran/${surah.number}`}>
+                  <a>
+                    <h2 className="text-2xl font-bold text-teal-600">
+                      {surah.number}. {surah.englishName}
+                    </h2>
+                    <p className="text-gray-600">{surah.englishNameTranslation}</p>
+                    <p className="text-sm text-gray-500">{surah.revelationType}</p>
+                  </a>
+                </Link>
+              </li>
+            ))}
           </ul>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
 
 export default QuranPage;
-
-
-
-
 
 
 

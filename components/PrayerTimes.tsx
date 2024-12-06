@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./Navbar"; // Import Navbar
 import "../styles/globals.css";
+import RandomReminder from "../components/RandomReminder";
 
 // Define the structure of prayer times
 interface PrayerTimesData {
@@ -144,11 +145,63 @@ const PrayerTimes = () => {
           </tbody>
         </table>
       </div>
+      <RandomReminder />
     </div>
   );
 };
 
 export default PrayerTimes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
