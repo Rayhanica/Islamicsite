@@ -32,16 +32,7 @@ const HomePage = () => {
     }
   };
 
-  const fetchHijriDate = async () => {
-    try {
-      const todayDate = new Date().toISOString().split("T")[0];
-      const response = await axios.get("https://api.aladhan.com/v1/gToH", { params: { date: todayDate } });
-      setIslamicDate(response.data.data.hijri.date);
-    } catch (error) {
-      console.error("Error fetching Hijri date:", error);
-      setIslamicDate("Jumada II 3, 1446 AH");
-    }
-  };
+ 
 
   const calculateCountdown = () => {
     if (prayerTimes) {
@@ -88,7 +79,6 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchPrayerTimes();
-    fetchHijriDate();
     setInterval(() => {
       const now = new Date();
       // Format the date to show the month name
@@ -610,7 +600,6 @@ const HomePage = () => {
       <div className="text-center py-4 bg-opacity-70 bg-black">
         <div className="text-3xl font-serif font-bold">{currentTime}</div>
         <div className="text-xl mt-2">{currentDate}</div>
-        <div className="text-xl mt-2">{islamicDate} (Hijri Date)</div>
       </div>
 
       <div className="text-center py-4 mt-6 bg-opacity-70 bg-black">
@@ -647,9 +636,6 @@ const HomePage = () => {
           <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: 'Amiri', fontWeight: 'bold' }}>
             {hadiths[dailyIndex % hadiths.length].arabic}
           </p>
-          <Link href="/hadith" className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300">
-            Explore Hadiths
-          </Link>
         </section>
 
         {/* Dua of the Day */}
@@ -660,9 +646,6 @@ const HomePage = () => {
           <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: 'Amiri', fontWeight: 'bold' }}>
             {duas[dailyIndex % duas.length].arabic}
           </p>
-          <Link href="/dua" className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300">
-            Explore Duas
-          </Link>
         </section>
         <RandomReminder />
       </div>
