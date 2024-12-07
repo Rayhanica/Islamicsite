@@ -1,17 +1,25 @@
-"use client"; // This ensures the component is client-side rendered
+"use client";
 
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import PrayerTimesMarquee from "../components/PrayerTimesMarquee";
 import RandomReminder from "../components/RandomReminder";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import "../styles/globals.css"; 
+import "../styles/globals.css";
+
+interface PrayerTimes {
+  Fajr: string;
+  Dhuhr: string;
+  Asr: string;
+  Maghrib: string;
+  Isha: string;
+}
 
 const HomePage = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [currentDate, setCurrentDate] = useState<string>("");
-  const [prayerTimes, setPrayerTimes] = useState<any>(null);
+  const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
   const [nextPrayer, setNextPrayer] = useState<string>("");
   const [nextPrayerTime, setNextPrayerTime] = useState<string>("");
   const [countdown, setCountdown] = useState<string>("");
@@ -20,6 +28,7 @@ const HomePage = () => {
   const city = "New York";
   const country = "USA";
 
+  // Fetch prayer times
   const fetchPrayerTimes = async () => {
     try {
       const response = await axios.get("https://api.aladhan.com/v1/timingsByCity", {
@@ -31,10 +40,11 @@ const HomePage = () => {
     }
   };
 
+  // Calculate countdown to next prayer
   const calculateCountdown = () => {
     if (prayerTimes) {
       const now = new Date();
-      const prayerNames = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+      const prayerNames: (keyof PrayerTimes)[] = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
       let nextPrayerName = "";
       let nextPrayerTime: Date | null = null;
 
@@ -68,8 +78,11 @@ const HomePage = () => {
 
       setNextPrayer(nextPrayerName);
       setNextPrayerTime(nextPrayerTime.toLocaleTimeString());
-      setCountdown(`${hoursLeft.toString().padStart(2, "0")}:${minutesLeft.toString().padStart(2, "0")}:${secondsLeft.toString().padStart(2, "0")}`);
-
+      setCountdown(
+        `${hoursLeft.toString().padStart(2, "0")}:${minutesLeft.toString().padStart(2, "0")}:${secondsLeft
+          .toString()
+          .padStart(2, "0")}`
+      );
       setCountdownColor(hoursLeft === 0 && minutesLeft < 1 ? "text-red-500" : "text-white");
     }
   };
@@ -79,11 +92,13 @@ const HomePage = () => {
     const interval = setInterval(() => {
       const now = new Date();
       setCurrentTime(now.toLocaleTimeString());
-      setCurrentDate(now.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      }));
+      setCurrentDate(
+        now.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      );
       calculateCountdown();
     }, 1000);
 
@@ -141,7 +156,6 @@ const HomePage = () => {
         <div className="text-3xl font-serif font-bold">{currentTime}</div>
         <div className="text-xl mt-2">{currentDate}</div>
       </div>
-
       <div className="text-center py-4 mt-6 bg-opacity-70 bg-black">
         <div className="text-2xl font-semibold">
           <p>
@@ -150,16 +164,18 @@ const HomePage = () => {
           <p className={`Countdown: ${countdown} ${countdownColor}`} />
         </div>
       </div>
-
       <div className="py-6 px-4">
         <section className="py-6 px-4 bg-blue-500 text-center rounded-xl shadow-lg mb-6">
           <h2 className="text-3xl font-bold text-blue-900">Quran of the Day</h2>
           <p className="italic mt-4 text-gray-800">{todaysVerse.english}</p>
           <p className="text-sm text-gray-700 mt-2">{todaysVerse.source}</p>
-          <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: 'Amiri', fontWeight: 'bold' }}>
+          <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: "Amiri", fontWeight: "bold" }}>
             {todaysVerse.arabic}
           </p>
-          <Link href="/quran" className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300">
+          <Link
+            href="/quran"
+            className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300"
+          >
             Explore the Quran
           </Link>
         </section>
@@ -167,7 +183,7 @@ const HomePage = () => {
           <h2 className="text-3xl font-bold text-green-900">Dua of the Day</h2>
           <p className="italic mt-4 text-gray-800">{todaysDua.english}</p>
           <p className="text-sm text-gray-700 mt-2">{todaysDua.source}</p>
-          <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: 'Amiri', fontWeight: 'bold' }}>
+          <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: "Amiri", fontWeight: "bold" }}>
             {todaysDua.arabic}
           </p>
         </section>
@@ -183,6 +199,8 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
 
 
 

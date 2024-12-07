@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import Navbar from "../components/Navbar"; // Assuming Navbar exists
+import Navbar from "../components/Navbar"; // Ensure this component exists
 import "../styles/globals.css";
 
 // Surah interface
@@ -14,8 +14,8 @@ interface Surah {
 
 const QuranPage = () => {
   const [surahs, setSurahs] = useState<Surah[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchSurahs = async () => {
@@ -27,16 +27,22 @@ const QuranPage = () => {
           setError("Failed to fetch surahs.");
         }
       } catch (err) {
-        setError("Error fetching surahs.");
+        // Explicit error handling with type assertion
+        if (axios.isAxiosError(err)) {
+          setError(err.message || "Error fetching surahs.");
+        } else {
+          setError("Unexpected error occurred.");
+        }
       } finally {
         setLoading(false);
       }
     };
+
     fetchSurahs();
   }, []);
 
   if (loading) return <p>Loading Surahs...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-200 text-gray-800">
@@ -45,14 +51,19 @@ const QuranPage = () => {
         <h1 className="text-4xl font-bold text-center mb-6">Quran Surahs</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {surahs.map((surah) => (
-            <Link key={surah.number} href={`/quran/${surah.number}`} className="block p-4 bg-white rounded-lg shadow hover:bg-green-100 transition">
-            <h2 className="text-2xl font-semibold text-teal-600">
-              {surah.number}. {surah.englishName}
-            </h2>
-            <p className="text-gray-600">{surah.englishNameTranslation}</p>
-            <span className="text-sm text-gray-500">{surah.revelationType}</span>
-          </Link>
-          
+            <Link
+              key={surah.number}
+              href={`/quran/${surah.number}`}
+              className="block p-4 bg-white rounded-lg shadow hover:bg-green-100 transition"
+            >
+              <div>
+                <h2 className="text-2xl font-semibold text-teal-600">
+                  {surah.number}. {surah.englishName}
+                </h2>
+                <p className="text-gray-600">{surah.englishNameTranslation}</p>
+                <span className="text-sm text-gray-500">{surah.revelationType}</span>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -61,6 +72,7 @@ const QuranPage = () => {
 };
 
 export default QuranPage;
+
 
 
 
