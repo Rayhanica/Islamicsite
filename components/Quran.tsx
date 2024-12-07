@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from "./Navbar"; // Import Navbar
 import "../styles/globals.css";
 
+interface Surah {
+  number: number;
+  englishName: string;
+  englishNameTranslation: string;
+}
+
 const Quran = () => {
-  const [surahs, setSurahs] = useState<any[]>([]);
+  const [surahs, setSurahs] = useState<Surah[]>([]);
 
   useEffect(() => {
     const fetchSurahs = async () => {
-      const response = await axios.get('https://api.alquran.cloud/v1/surah');
-      setSurahs(response.data.data);
+      try {
+        const response = await axios.get('https://api.alquran.cloud/v1/surah');
+        setSurahs(response.data.data);
+      } catch (error) {
+        console.error('Error fetching surahs:', error);
+      }
     };
     fetchSurahs();
   }, []);
@@ -29,6 +38,7 @@ const Quran = () => {
 };
 
 export default Quran;
+
 
 
 
