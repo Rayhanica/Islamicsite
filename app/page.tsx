@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Navbar from "../components/Navbar";
 import PrayerTimesMarquee from "../components/PrayerTimesMarquee";
 import RandomReminder from "../components/RandomReminder";
@@ -29,7 +29,7 @@ const HomePage = () => {
   const country = "USA";
 
   // Fetch prayer times
-  const fetchPrayerTimes = async () => {
+  const fetchPrayerTimes = useCallback(async () => {
     try {
       const response = await axios.get("https://api.aladhan.com/v1/timingsByCity", {
         params: { city, country, method: 2 },
@@ -38,10 +38,10 @@ const HomePage = () => {
     } catch (error) {
       console.error("Error fetching prayer times:", error);
     }
-  };
+  }, []);
 
   // Calculate countdown to next prayer
-  const calculateCountdown = () => {
+  const calculateCountdown = useCallback(() => {
     if (prayerTimes) {
       const now = new Date();
       const prayerNames: (keyof PrayerTimes)[] = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
@@ -85,10 +85,13 @@ const HomePage = () => {
       );
       setCountdownColor(hoursLeft === 0 && minutesLeft < 1 ? "text-red-500" : "text-white");
     }
-  };
+  }, [prayerTimes]);
 
   useEffect(() => {
     fetchPrayerTimes();
+  }, [fetchPrayerTimes]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
       setCurrentTime(now.toLocaleTimeString());
@@ -103,7 +106,7 @@ const HomePage = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [prayerTimes]);
+  }, [calculateCountdown]);
 
   const dailyIndex = new Date().getDate() - 1;
 
@@ -163,21 +166,20 @@ const HomePage = () => {
         </div>
       </div>
       <div className="py-6 px-4">
-      <section className="py-6 px-4 bg-blue-500 text-center rounded-xl shadow-lg mb-6">
-  <h2 className="text-3xl font-bold text-blue-900">Quran of the Day</h2>
-  <p className="italic mt-4 text-gray-800">{todaysVerse.english}</p>
-  <p className="text-sm text-gray-700 mt-2">{todaysVerse.source}</p>
-  <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: "Amiri", fontWeight: "bold" }}>
-    {todaysVerse.arabic}
-  </p>
-  <Link
-    href="/quran"
-    className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300"
-  >
-    Explore the Quran
-  </Link>
-</section>
-
+        <section className="py-6 px-4 bg-blue-500 text-center rounded-xl shadow-lg mb-6">
+          <h2 className="text-3xl font-bold text-blue-900">Quran of the Day</h2>
+          <p className="italic mt-4 text-gray-800">{todaysVerse.english}</p>
+          <p className="text-sm text-gray-700 mt-2">{todaysVerse.source}</p>
+          <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: "Amiri", fontWeight: "bold" }}>
+            {todaysVerse.arabic}
+          </p>
+          <Link
+            href="/quran"
+            className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300"
+          >
+            Explore the Quran
+          </Link>
+        </section>
         <section className="py-6 px-4 bg-green-500 text-center rounded-xl shadow-lg mb-6">
           <h2 className="text-3xl font-bold text-green-900">Dua of the Day</h2>
           <p className="italic mt-4 text-gray-800">{todaysDua.english}</p>
@@ -198,6 +200,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 
 
