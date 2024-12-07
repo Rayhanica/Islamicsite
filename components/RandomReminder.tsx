@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 interface Reminder {
   text: string;
@@ -8,8 +8,9 @@ interface Reminder {
 }
 
 const RandomReminder = () => {
-  // List reminders with source citations
-  const reminders = [
+  // Use useMemo to memoize the reminders array
+  const reminders = useMemo(
+    () => [
     {
       text: "“Whoever shows you the way to goodness, then he will have the same reward as the one who does it.” (Sahih Muslim)",
       source: "Sahih Muslim",
@@ -148,7 +149,9 @@ const RandomReminder = () => {
       text: "“The best among you are those who have the best manners and character.” (Sahih Bukhari)",
       source: "Sahih Bukhari",
     },
-  ];
+  ],
+  []
+);
 
   // State to hold the current reminder
   const [currentReminder, setCurrentReminder] = useState<Reminder>(reminders[0]);
