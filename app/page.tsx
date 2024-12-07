@@ -158,10 +158,8 @@ const HomePage = () => {
       </div>
       <div className="text-center py-4 mt-6 bg-opacity-70 bg-black">
         <div className="text-2xl font-semibold">
-          <p>
-            Next Prayer: {nextPrayer} at {nextPrayerTime}
-          </p>
-          <p className={`Countdown: ${countdown} ${countdownColor}`} />
+          <p>Next Prayer: {nextPrayer} at {nextPrayerTime}</p>
+          <p className={`Countdown ${countdownColor}`}>Countdown: {countdown}</p>
         </div>
       </div>
       <div className="py-6 px-4">
@@ -172,12 +170,6 @@ const HomePage = () => {
           <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: "Amiri", fontWeight: "bold" }}>
             {todaysVerse.arabic}
           </p>
-          <Link
-            href="/quran"
-            className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300"
-          >
-            Explore the Quran
-          </Link>
         </section>
         <section className="py-6 px-4 bg-green-500 text-center rounded-xl shadow-lg mb-6">
           <h2 className="text-3xl font-bold text-green-900">Dua of the Day</h2>
@@ -199,6 +191,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 
 
