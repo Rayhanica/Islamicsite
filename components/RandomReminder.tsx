@@ -1,5 +1,11 @@
 "use client";
+
 import { useEffect, useState } from "react";
+
+interface Reminder {
+  text: string;
+  source: string;
+}
 
 const RandomReminder = () => {
   // List reminders with source citations
@@ -145,7 +151,7 @@ const RandomReminder = () => {
   ];
 
   // State to hold the current reminder
-  const [currentReminder, setCurrentReminder] = useState<any>(reminders[0]);
+  const [currentReminder, setCurrentReminder] = useState<Reminder>(reminders[0]);
 
   useEffect(() => {
     const reminderInterval = setInterval(() => {
@@ -156,24 +162,18 @@ const RandomReminder = () => {
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(reminderInterval);
-  }, []); // Empty dependency array ensures it runs once when the component is mounted
+  }, [reminders]); // Add reminders to the dependency array
 
   return (
     <div className="w-full bg-green-900 text-white text-center py-2 px-4 overflow-hidden">
-    <div className="text-sm font-medium">
-      <span className="italic">{currentReminder.text}</span>
-      <span className="block text-xs text-gray-300 mt-1">Source: {currentReminder.source}</span>
+      <div className="text-sm font-medium">
+        <span className="italic">{currentReminder.text}</span>
+        <span className="block text-xs text-gray-300 mt-1">
+          Source: {currentReminder.source}
+        </span>
+      </div>
     </div>
-  </div>
   );
 };
 
 export default RandomReminder;
-
-
-
-
-
-
-
-
