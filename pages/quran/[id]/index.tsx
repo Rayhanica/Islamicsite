@@ -4,6 +4,8 @@ import axios from "axios";
 import Navbar from "../../../components/Navbar";
 import Link from "next/link";
 
+
+
 const surahNames = [
   "Al-Fatiha", "Al-Baqarah", "Aali Imran", "An-Nisa", "Al-Ma'idah", "Al-An'am", "Al-A'raf", "Al-Anfal", "At-Tawbah", "Yunus",
   "Hud", "Yusuf", "Ibrahim", "Al-Hijr", "An-Nahl", "Al-Isra", "Al-Kahf", "Maryam", "Ta-Ha", "Al-Anbiya",
