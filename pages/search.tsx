@@ -2,11 +2,19 @@ import { useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+interface SearchResult {
+  surah: {
+    number: number;
+    name: string;
+  };
+  text: string;
+}
+
 const SearchPage = () => {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [query, setQuery] = useState<string>("");
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const handleSearch = async () => {
     if (!query) return;
@@ -18,12 +26,20 @@ const SearchPage = () => {
       const response = await axios.get(
         `https://api.alquran.cloud/v1/search/${query}`
       );
+
       if (response.data.code === 200) {
-        setResults(response.data.data.hits);
+        const hits: SearchResult[] = response.data.data.hits.map((hit: any) => ({
+          surah: {
+            number: hit.surah.number,
+            name: hit.surah.name,
+          },
+          text: hit.text,
+        }));
+        setResults(hits);
       } else {
         setError("No results found.");
       }
-    } catch (err) {
+    } catch {
       setError("Error searching.");
     } finally {
       setLoading(false);
@@ -55,7 +71,7 @@ const SearchPage = () => {
         {error && <p className="text-red-500">{error}</p>}
 
         <div className="space-y-4">
-          {results.map((result: any) => (
+          {results.map((result) => (
             <div key={result.surah.number} className="p-4 bg-white rounded shadow">
               <h3 className="font-bold">{result.surah.name}</h3>
               <p>{result.text}</p>
@@ -68,4 +84,5 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
+
 
