@@ -2,7 +2,17 @@ import { useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+interface Surah {
+  number: number;
+  name: string;
+}
+
 interface SearchResult {
+  surah: Surah;
+  text: string;
+}
+
+interface ApiHit {
   surah: {
     number: number;
     name: string;
@@ -23,12 +33,11 @@ const SearchPage = () => {
     setError("");
 
     try {
-      const response = await axios.get(
-        `https://api.alquran.cloud/v1/search/${query}`
-      );
+      const response = await axios.get(`https://api.alquran.cloud/v1/search/${query}`);
 
       if (response.data.code === 200) {
-        const hits: SearchResult[] = response.data.data.hits.map((hit: any) => ({
+        // Use the ApiHit interface to type the hits from the API
+        const hits: SearchResult[] = response.data.data.hits.map((hit: ApiHit) => ({
           surah: {
             number: hit.surah.number,
             name: hit.surah.name,
@@ -84,5 +93,6 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
+
 
 
