@@ -28,26 +28,26 @@ const QuranSurahPage = () => {
   const { id } = router.query;
 
   const [verses, setVerses] = useState<Verse[]>([]);
-  const [surahName, setSurahName] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [surahName, setSurahName] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchSurah = async () => {
       if (!id) return;
 
       try {
-        // Fetch surah data
         const response = await axios.get(
           `https://api.alquran.cloud/v1/surah/${id}/editions/quran-uthmani,en.sahih`
         );
         if (response.data.code === 200) {
-          const arabicVerses = response.data.data[0].ayahs;
-          const englishVerses = response.data.data[1].ayahs;
-          setSurahName(surahNames[parseInt(id as string) - 1]); // Fetch Surah name using ID
+          const arabicVerses: { numberInSurah: number; text: string }[] = response.data.data[0].ayahs;
+          const englishVerses: { text: string }[] = response.data.data[1].ayahs;
+
+          setSurahName(surahNames[parseInt(id as string, 10) - 1]); // Fetch Surah name using ID
 
           // Combine verses
-          const combinedVerses = arabicVerses.map((verse: any, index: number) => ({
+          const combinedVerses = arabicVerses.map((verse, index) => ({
             numberInSurah: verse.numberInSurah,
             text: verse.text,
             translation: englishVerses[index].text,
@@ -57,7 +57,7 @@ const QuranSurahPage = () => {
         } else {
           setError("Failed to fetch verses.");
         }
-      } catch (err) {
+      } catch {
         setError("Error fetching verses.");
       } finally {
         setLoading(false);
@@ -82,7 +82,7 @@ const QuranSurahPage = () => {
         {/* Navigation Buttons for Previous and Next Surah */}
         <div className="flex justify-between mb-6">
           <Link
-            href={`/quran/${parseInt(id as string) - 1}`}
+            href={`/quran/${parseInt(id as string, 10) - 1}`}
             className="px-4 py-2 bg-teal-500 text-white rounded"
           >
             Previous Surah
@@ -94,7 +94,7 @@ const QuranSurahPage = () => {
             Back to Quran
           </Link>
           <Link
-            href={`/quran/${parseInt(id as string) + 1}`}
+            href={`/quran/${parseInt(id as string, 10) + 1}`}
             className="px-4 py-2 bg-teal-500 text-white rounded"
           >
             Next Surah
