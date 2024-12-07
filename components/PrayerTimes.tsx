@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Navbar from "./Navbar"; // Import Navbar
 import "../styles/globals.css";
@@ -21,7 +21,7 @@ const PrayerTimes = () => {
   const [countdown, setCountdown] = useState<string>("");
 
   // Fetch prayer times from Aladhan API
-  const fetchPrayerTimes = async () => {
+  const fetchPrayerTimes = useCallback(async () => {
     try {
       const response = await axios.get("https://api.aladhan.com/v1/timingsByCity", {
         params: {
@@ -34,7 +34,7 @@ const PrayerTimes = () => {
     } catch (error) {
       console.error("Error fetching prayer times:", error);
     }
-  };
+  }, []);
 
   // Format time to 12-hour format with AM/PM
   const formatTime = (time: string) => {
@@ -45,7 +45,7 @@ const PrayerTimes = () => {
   };
 
   // Determine current and next prayers, and calculate countdown
-  const updatePrayerTimes = () => {
+  const updatePrayerTimes = useCallback(() => {
     if (prayerTimes) {
       const now = new Date();
       const prayerNames = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
@@ -94,16 +94,19 @@ const PrayerTimes = () => {
         `${String(hoursLeft).padStart(2, "0")}:${String(minutesLeft).padStart(2, "0")}:${String(secondsLeft).padStart(2, "0")}`
       );
     }
-  };
+  }, [prayerTimes]);
 
   useEffect(() => {
     fetchPrayerTimes();
+  }, [fetchPrayerTimes]);
+
+  useEffect(() => {
     const timer = setInterval(updatePrayerTimes, 1000); // Update every second
 
     return () => {
       clearInterval(timer);
     };
-  }, [prayerTimes]);
+  }, [updatePrayerTimes]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-800 via-teal-900 to-gray-900 text-white">
@@ -151,6 +154,7 @@ const PrayerTimes = () => {
 };
 
 export default PrayerTimes;
+
 
 
 
