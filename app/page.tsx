@@ -649,6 +649,12 @@ const HomePage = () => {
           <p className="text-xl mt-4" dir="rtl" style={{ fontFamily: "Amiri", fontWeight: "bold" }}>
             {todaysDua.arabic}
           </p>
+          <Link
+            href="/dua"
+            className="mt-6 inline-block px-6 py-3 bg-blue-900 text-yellow-300 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-400 hover:text-blue-900 transition duration-300"
+          >
+            Explore More Duas
+          </Link>
         </section>
         <section className="py-6 px-4 bg-yellow-500 text-center rounded-xl shadow-lg mb-6">
           <h2 className="text-3xl font-bold text-yellow-900">Hadith of the Day</h2>

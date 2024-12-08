@@ -87,5 +87,19 @@ button:hover {
   background-size: cover;
   opacity: 0.05;
 }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+h1, h2 {
+  font-weight: bold;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
 

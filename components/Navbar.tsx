@@ -11,7 +11,8 @@ const Navbar = () => {
           <Link href="/" className="hover:text-gold-600">Home</Link>
           <Link href="/quran" className="hover:text-gold-600">Quran</Link>
           <Link href="/prayerTimes" className="hover:text-gold-600">Prayer Times</Link> {/* Link to Prayer Times */}
-          <Link href="/about" className="text-lg hover:text-gold-600 transition-colors">About Me</Link>
+          <Link href="/dua" className="hover:text-gold-600">Duas </Link>
+          <Link href="/about" className="hover:text-gold-600">About Me</Link>
         </div>
       </div>
     </nav>
