@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
-import "../styles/global.css"
+import Navbar from "../components/Navbar"; // Ensure this component exists
+import "../styles/globals.css";
 
 // Surah interface
 interface Surah {
@@ -72,6 +72,38 @@ const QuranPage = () => {
 };
 
 export default QuranPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
