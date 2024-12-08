@@ -23,6 +23,11 @@ interface Verse {
   translation: string;
 }
 
+interface Ayah {
+  numberInSurah: number;
+  text: string;
+}
+
 const VerseCard = ({ verse }: { verse: Verse }) => (
   <div className="p-6 bg-white rounded-lg shadow-lg border border-gray-300">
     <p className="text-2xl text-gray-700 font-semibold">
@@ -51,11 +56,11 @@ const QuranSurahPage = () => {
         );
 
         if (response.data.code === 200) {
-          const arabicVerses = response.data.data[0].ayahs;
-          const englishVerses = response.data.data[1].ayahs;
+          const arabicVerses: Ayah[] = response.data.data[0].ayahs;
+          const englishVerses: Ayah[] = response.data.data[1].ayahs;
 
           setSurahName(surahNames[parseInt(id as string, 10) - 1] || `Surah ${id}`);
-          const combinedVerses = arabicVerses.map((verse: any, index: number) => ({
+          const combinedVerses: Verse[] = arabicVerses.map((verse, index) => ({
             numberInSurah: verse.numberInSurah,
             text: verse.text,
             translation: englishVerses[index].text,
@@ -119,6 +124,7 @@ const QuranSurahPage = () => {
 };
 
 export default QuranSurahPage;
+
 
 
 
