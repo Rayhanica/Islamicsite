@@ -1,32 +1,19 @@
-/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Body and default font setup */
 body {
-  font-family: "Georgia", serif;
-  background-color: #f3f4f6;
-  color: #2d3748;
+  font-family: "Amiri", serif;
+  background-color: #f3f4f6; /* Light background */
+  color: #2d3748; /* Dark text */
 }
 
 h1, h2, h3 {
-  font-family: "Amiri", serif;
+  font-family: "Amiri", serif; /* Beautiful serif font for headings */
 }
 
-button {
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #38b2ac;
-
-}
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-}
-
+/* Link and button transitions */
 a {
   text-decoration: none;
   color: inherit;
@@ -37,48 +24,14 @@ a:hover {
 }
 
 button {
-  cursor: pointer;
-}
-/* In globals.css or your desired CSS file */
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  transition: background-color 0.3s ease;
 }
 
-.animate-marquee {
-  animation: marquee 15s linear infinite;
-}
-/* In globals.css or your desired CSS file */
-.bg-blue-700 {
-  background-color: #1D4ED8; /* You can use another color here */
+button:hover {
+  background-color: #38b2ac;
 }
 
-.text-white {
-  color: #ffffff;
-}
-
-.text-gold-600 {
-  color: #FBBF24; /* Gold color */
-}
-
-/* In globals.css or your desired CSS file */
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 15s linear infinite;
-}
-/* Add this CSS to your global stylesheet or in a <style> tag */
+/* Smooth marquee animations */
 @keyframes slow-marquee {
   0% {
     transform: translateX(100%);
@@ -94,123 +47,45 @@ button {
   display: flex;
   align-items: center;
 }
-/* styles/islamic.css */
 
-/* Global Styles */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f9f9f9; /* Light background for better readability */
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Main Header Styling */
-h1 {
-  font-family: 'Amiri', serif;
-  color: #004d40; /* Deep green color */
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Styling for Individual Hadith */
-.hadith-card {
+/* Surah page-specific styles */
+.surah-card {
   background-color: #ffffff;
-  border: 2px solid #004d40; /* Green border for Hadith */
+  border: 2px solid #004d40; /* Green border */
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
   padding: 20px;
   transition: box-shadow 0.3s ease;
 }
 
-.hadith-card:hover {
+.surah-card:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.hadith-title {
+.surah-title {
   font-size: 24px;
-  font-family: 'Amiri', serif;
   color: #004d40;
   margin-bottom: 10px;
 }
 
-.hadith-text {
+.surah-verse {
   font-size: 18px;
   color: #2f2f2f;
   line-height: 1.6;
-  font-family: 'Noto Naskh Arabic', sans-serif; /* Arabic Font for Hadith */
 }
 
-.translation {
+.surah-translation {
   font-size: 16px;
   color: #555555;
   margin-top: 10px;
-  font-family: 'Arial', sans-serif;
   font-style: italic;
 }
 
-.explanation {
-  font-size: 14px;
-  color: #777777;
-  margin-top: 15px;
-  font-family: 'Arial', sans-serif;
-  background-color: #f1f1f1;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-/* Styling for the Search Bar */
-.search-container {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.search-bar {
-  width: 60%;
-  padding: 12px;
-  border-radius: 20px;
-  border: 1px solid #004d40;
-  font-size: 16px;
-  outline: none;
-}
-
-.search-bar:focus {
-  border-color: #009688; /* Highlight border on focus */
-}
-
-/* Buttons for navigation or interaction */
-button {
-  background-color: #004d40;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #009688;
-}
-
-/* Islamic Pattern Background */
+/* Utility classes */
 .pattern-background {
-  background-image: url('/images/islamic-pattern.png'); /* Add a subtle geometric pattern */
+  background-image: url('/images/islamic-pattern.png'); /* Ensure path is correct */
   background-repeat: repeat;
   background-size: cover;
   opacity: 0.05;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
 }
+
 

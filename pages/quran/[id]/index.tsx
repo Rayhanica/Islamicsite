@@ -4,8 +4,6 @@ import axios from "axios";
 import Navbar from "../../../components/Navbar";
 import Link from "next/link";
 
-
-
 const surahNames = [
   "Al-Fatiha", "Al-Baqarah", "Aali Imran", "An-Nisa", "Al-Ma'idah", "Al-An'am", "Al-A'raf", "Al-Anfal", "At-Tawbah", "Yunus",
   "Hud", "Yusuf", "Ibrahim", "Al-Hijr", "An-Nahl", "Al-Isra", "Al-Kahf", "Maryam", "Ta-Ha", "Al-Anbiya",
@@ -25,6 +23,15 @@ interface Verse {
   translation: string;
 }
 
+const VerseCard = ({ verse }: { verse: Verse }) => (
+  <div className="p-6 bg-white rounded-lg shadow-lg border border-gray-300">
+    <p className="text-2xl text-gray-700 font-semibold">
+      {verse.numberInSurah}. {verse.text}
+    </p>
+    <p className="text-lg text-gray-500 italic mt-2">{verse.translation}</p>
+  </div>
+);
+
 const QuranSurahPage = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -42,14 +49,13 @@ const QuranSurahPage = () => {
         const response = await axios.get(
           `https://api.alquran.cloud/v1/surah/${id}/editions/quran-uthmani,en.sahih`
         );
+
         if (response.data.code === 200) {
-          const arabicVerses: { numberInSurah: number; text: string }[] = response.data.data[0].ayahs;
-          const englishVerses: { text: string }[] = response.data.data[1].ayahs;
+          const arabicVerses = response.data.data[0].ayahs;
+          const englishVerses = response.data.data[1].ayahs;
 
-          setSurahName(surahNames[parseInt(id as string, 10) - 1]); // Fetch Surah name using ID
-
-          // Combine verses
-          const combinedVerses = arabicVerses.map((verse, index) => ({
+          setSurahName(surahNames[parseInt(id as string, 10) - 1] || `Surah ${id}`);
+          const combinedVerses = arabicVerses.map((verse: any, index: number) => ({
             numberInSurah: verse.numberInSurah,
             text: verse.text,
             translation: englishVerses[index].text,
@@ -59,8 +65,9 @@ const QuranSurahPage = () => {
         } else {
           setError("Failed to fetch verses.");
         }
-      } catch {
-        setError("Error fetching verses.");
+      } catch (err) {
+        console.error(err);
+        setError("Unable to fetch the Surah. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -69,22 +76,20 @@ const QuranSurahPage = () => {
     fetchSurah();
   }, [id]);
 
-  if (loading) return <p>Loading verses...</p>;
+  if (!id || loading) return <p>Loading verses...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-200 text-gray-800">
       <Navbar />
       <div className="container mx-auto py-6">
-        {/* Surah Name Header */}
         <h1 className="text-3xl font-bold text-center mb-6">
-          {surahName ? `Surah ${surahName}` : `Surah ${id}`}
+          {surahName}
         </h1>
 
-        {/* Navigation Buttons for Previous and Next Surah */}
         <div className="flex justify-between mb-6">
           <Link
-            href={`/quran/${parseInt(id as string, 10) - 1}`}
+            href={`/quran/${Math.max(parseInt(id as string, 10) - 1, 1)}`}
             className="px-4 py-2 bg-teal-500 text-white rounded"
           >
             Previous Surah
@@ -96,7 +101,7 @@ const QuranSurahPage = () => {
             Back to Quran
           </Link>
           <Link
-            href={`/quran/${parseInt(id as string, 10) + 1}`}
+            href={`/quran/${Math.min(parseInt(id as string, 10) + 1, 114)}`}
             className="px-4 py-2 bg-teal-500 text-white rounded"
           >
             Next Surah
@@ -105,15 +110,7 @@ const QuranSurahPage = () => {
 
         <div className="space-y-6">
           {verses.map((verse) => (
-            <div
-              key={verse.numberInSurah}
-              className="p-6 bg-white rounded-lg shadow-lg border border-gray-300"
-            >
-              <p className="text-2xl text-gray-700 font-semibold">
-                {verse.numberInSurah}. {verse.text}
-              </p>
-              <p className="text-lg text-gray-500 italic mt-2">{verse.translation}</p>
-            </div>
+            <VerseCard key={verse.numberInSurah} verse={verse} />
           ))}
         </div>
       </div>
@@ -122,6 +119,7 @@ const QuranSurahPage = () => {
 };
 
 export default QuranSurahPage;
+
 
 
 
