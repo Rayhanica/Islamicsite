@@ -195,6 +195,7 @@ const HomePage = () => {
         </section>
         <RandomReminder />
       </div>
+      <footer>Developed by Rayhan Usmanu</footer>
     </div>
   );
 };

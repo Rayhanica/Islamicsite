@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// Define the structure of the prayer times object
 interface PrayerTimes {
   Fajr: string;
   Dhuhr: string;
@@ -12,41 +11,32 @@ interface PrayerTimes {
   Isha: string;
 }
 
-// Function to convert 24-hour time to 12-hour AM/PM format
 const formatTimeTo12Hour = (time: string) => {
   const [hour, minute] = time.split(":").map(Number);
   const suffix = hour >= 12 ? "PM" : "AM";
   const hour12 = hour % 12 || 12;
-  const minuteFormatted = minute < 10 ? `0${minute}` : minute;
-  return `${hour12}:${minuteFormatted} ${suffix}`;
+  return `${hour12}:${minute < 10 ? `0${minute}` : minute} ${suffix}`;
 };
 
 const PrayerTimesMarquee = () => {
-  const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null); // Store prayer times
+  const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
 
-  // Fetch prayer times based on default city
   const fetchPrayerTimes = async () => {
     try {
-      const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity`, {
-        params: {
-          city: "New York",
-          country: "USA", // Replace with your country
-          method: 2,
-        },
+      const response = await axios.get(`https://api.aladhan.com/v1/timingsByCity`, {
+        params: { city: "New York", country: "USA", method: 2 },
       });
 
-      const timings = response.data.data.timings;
+      const timings = response.data?.data?.timings;
+      if (!timings) throw new Error("Timings not available");
 
-      // Convert all prayer times to 12-hour AM/PM format
-      const formattedTimes: PrayerTimes = {
+      setPrayerTimes({
         Fajr: formatTimeTo12Hour(timings.Fajr),
         Dhuhr: formatTimeTo12Hour(timings.Dhuhr),
         Asr: formatTimeTo12Hour(timings.Asr),
         Maghrib: formatTimeTo12Hour(timings.Maghrib),
         Isha: formatTimeTo12Hour(timings.Isha),
-      };
-
-      setPrayerTimes(formattedTimes);
+      });
     } catch (error) {
       console.error("Error fetching prayer times:", error);
     }
@@ -76,6 +66,7 @@ const PrayerTimesMarquee = () => {
 };
 
 export default PrayerTimesMarquee;
+
 
 
 
