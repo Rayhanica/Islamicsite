@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import "../styles/globals.css";
 
 const AboutPage = () => {
   return (

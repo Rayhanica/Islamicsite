@@ -1,9 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Navbar from "./Navbar"; // Import Navbar
-import "../styles/globals.css";
 import RandomReminder from "../components/RandomReminder";
-
+import "../styles/globals.css";
 // Define the structure of prayer times
 interface PrayerTimesData {
   Fajr: string;
