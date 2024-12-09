@@ -12,7 +12,6 @@ const Navbar = () => {
           <Link href="/quran" className="hover:text-gold-600">Quran</Link>
           <Link href="/prayerTimes" className="hover:text-gold-600">Prayer Times</Link> {/* Link to Prayer Times */}
           <Link href="/dua" className="hover:text-gold-600">Duas </Link>
-          <Link href="/about" className="hover:text-gold-600">About Me</Link>
         </div>
       </div>
     </nav>
