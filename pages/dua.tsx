@@ -38,7 +38,7 @@ const duas: Dua[] = [
     category: "Morning Duas",
   },
   {
-    id: 3 ,
+    id: 4 ,
     title: "Surah An Nas (3x)",
     arabic: "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ أَعُوْذُ بِرَبِّ النَّاسِ ، مَلِكِ النَّاسِ ، إِلٰهِ النَّاسِ ، مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ، اَلَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ، مِنَ الْجِنَّةِ وَالنَّاسِ",
     transliteration: "Bismi-llāhi-r-Raḥmāni-r-Raḥīm. Qul aʿūdhu bi-Rabbi-n-nās. Maliki-n-nās. Ilāh-hin-nās. Min sharri-l-waswāsi-l-khannās. Al-ladhī yuwaswisu fī ṣudūri-n-nās. Mina-l-jinnati wa-n-nās.",
@@ -47,7 +47,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 4  ,
+    id: 5  ,
     title: "Sayyid al-Istighfar: The Best Way of Seeking Forgiveness",
     arabic: "اَللّٰهُمَّ أَنْتَ رَبِّيْ لَا إِلٰهَ إِلَّا أَنْتَ ، خَلَقْتَنِيْ وَأَنَا عَبْدُكَ ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ ، أَعُوْذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ ، أَبُوْءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوْءُ لَكَ بِذَنْبِيْ ، فَاغْفِرْ لِيْ فَإِنَّهُ لَا يَغْفِرُ الذُّنُوْبَ إِلَّا أَنْتَ",
     transliteration: "Allāhumma Anta Rabbī, lā ilāha illā Ant, khalaqtanī wa ana ʿabduk, wa ana ʿalā ʿahdika wa waʿdika mā’staṭaʿt, aʿūdhu bika min sharri mā ṣanaʿt, abū’u laka bi niʿmatika ʿalayya wa abū’u laka bi-dhambī fa-ghfir lī fa-innahū lā yaghfiru-dh-dhunūba illā Ant.",
@@ -56,7 +56,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 5 ,
+    id: 6 ,
     title: "Protect Yourself From Anxiety, Laziness, Debt etc",
     arabic: "اَللّٰهُمَّ إِنِّيْ أَعُوْذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ ، وَأَعُوْذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوْذُ بِكَ مِنَ الْجُبْنِ وَالْبُخْلِ ، وَأَعُوْذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ وَقَهْرِ الرِّجَالِ",
     transliteration: "Allāhumma innī aʿūdhu bika min-l-hammi wa-l-ḥazan, wa aʿūdhu bika min-l-ʿajzi wa-l-kasal, wa aʿūdhu bika min-l-jubni wa-l-bukhl, wa aʿūdhu bika min ghalabati-d-dayni wa qahri-r-rijāl.",
@@ -65,7 +65,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 6 ,
+    id: 7 ,
     title: "Well-being in this World and the Hereafter",
     arabic: "اَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ ، اَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِيْ دِيْنِيْ وَدُنْيَايَ وَأَهْلِيْ وَمَالِيْ ، اَللّٰهُمَّ اسْتُرْ عَوْرَاتِيْ وَآمِنْ رَوْعَاتِيْ ، اَللّٰهُمَّ احْفَظْنِيْ مِنْ بَيْنِ يَدَيَّ ، وَمِنْ خَلْفِيْ ، وَعَنْ يَّمِيْنِيْ ، وَعَنْ شِمَالِيْ ، وَمِنْ فَوْقِيْ ، وَأَعُوْذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِيْ",
     transliteration: "Allāhumma innī as’aluka-l-ʿāfiyata fi-d-dunyā wa-l-ākhirah. Allāhumma innī as’aluka-l-ʿafwa wa-l-ʿāfiyata fī dīnī wa dunyāya wa ahlī wa mālī, Allāhumma-stur ʿawrātī wa āmin rawʿātī. Allāhumma-ḥfaẓnī mim bayni yadayya wa min khalfī, wa ʿay-n yamīnī wa ʿan shimālī wa min fawqī, wa aʿūdhu bi-ʿaẓamatika an ughtāla min taḥtī.",
@@ -74,7 +74,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 7 ,
+    id: 8 ,
     title: "Protect Yourself From the 4 Evils",
     arabic: "اَللّٰهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ ، فَاطِرَ السَّمٰوَاتِ وَالْأَرْضِ ، رَبَّ كُلِّ شَيْءٍ وَمَلِيْكَهُ ، أَشْهَدُ أَنْ لَّا إِلٰهَ إِلَّا أَنْتَ ، أَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِيْ ، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ ، وَأَنْ أَقْتَرِفَ عَلَىٰ نَفْسِيْ سُوْءًا ، أَوْ أَجُرَّهُ إِلَىٰ مُسْلِمٍ",
     transliteration: "Allāhumma ʿālima-l-ghaybi wa-sh-shahādah, fāṭir-as-samāwāti wa-l-arḍi, rabba kulli shay’iw-wa malīkah, ash-hadu al-lā ilāha illā Anta, aʿūdhu bika min sharri nafsī wa min sharri-sh-shayṭāni wa shirkihī wa an aqtarifa ʿalā nafsī sū’an aw ajurrahū ilā muslim.",
@@ -83,7 +83,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 8 ,
+    id: 9 ,
     title: "Entrust All Your Matters to Allah",
     arabic: "يَا حَيُّ يَا قَيُّوْمُ ، بِرَحْمَتِكَ أَسْتَغِيْثُ ، أَصْلِحْ لِيْ شَأْنِيْ كُلَّهُ ، وَلَا تَكِلْنِيْ إِلَىٰ نَفْسِيْ طَرْفَةَ عَيْنٍ",
     transliteration: "Yā Ḥayyu yā Qayyūm, bi-raḥmatika astaghīth, aṣliḥ lī sha’nī kullah, wa lā takilnī ilā nafsī ṭarfata ʿayn.",
@@ -92,7 +92,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 9 ,
+    id: 10 ,
     title: "Fulfil Your Obligation to Thank Allah",
     arabic: "اَللّٰهُمَّ مَا أَصْبَحَ بِيْ مِنْ نِّعْمَةٍ أَوْ بِأَحَدٍ مِّنْ خَلْقِكَ ، فَمِنْكَ وَحْدَكَ لَا شَرِيْكَ لَكَ ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ",
     transliteration: "Allāhumma mā aṣbaḥa bī min niʿmatin aw bi-aḥadim-min khalqik, fa-minka waḥdaka lā sharīka lak, fa laka-l-ḥamdu wa laka-sh-shukr.",
@@ -101,7 +101,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 10 ,
+    id: 11 ,
     title: "Start Your Day by Renewing Tawhid",
     arabic: "أَصْبَحْنَا عَلَىٰ فِطْرَةِ الْإِسْلَامِ ، وَعَلَىٰ كَلِمَةِ الْإِخْلَاصِ ، وَعَلَىٰ دِيْنِ نَبِيِّنَا مُحَمَّدٍ ، وَعَلَىٰ مِلَّةِ أَبِيْنَا إِبْرَاهِيْمَ حَنِيْفًا مُّسْلِمًا وَّمَا كَانَ مِنَ الْمُشْرِكِيْنَ",
     transliteration: "Aṣbaḥnā ʿalā fiṭrati-l-islām. wa ʿalā kalimati-l-ikhlāṣ, wa ʿalā dīni Nabiyyinā Muḥammadin ṣallallāhu ʿalayhi wa sallam, wa ʿalā millati abīnā Ibrāhīma ḥanīfam-muslima, wa mā kāna min-l-mushrikīn.",
@@ -110,7 +110,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 11 ,
+    id: 12 ,
     title: "Start the Morning by Praising Allah (3x)",
     arabic: "أَصْبَحْتُ أُثْنِيْ عَلَيْكَ حَمْدًا ، وَأَشْهَدُ أَنْ لَّا إِلٰهَ إِلَّا اللّٰهُ",
     transliteration: "Aṣbaḥtu uthnī ʿalayka ḥamdā, wa ash-hadu al-lā ilāha illāl- Allāh.",
@@ -119,7 +119,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 12 ,
+    id: 13 ,
     title: "Ask Allah for a Good Day",
     arabic: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلّٰهِ وَالْحَمْدُ لِلّٰهِ ، لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيْكَ لَهُ ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيْرٌ ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِيْ هٰذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ ، وَأَعُوْذُ بِكَ مِنْ شَرِّ مَا فِيْ هٰذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ ، رَبِّ أَعُوْذُ بِكَ مِنَ الْكَسَلِ وَسُوْءِ الْكِبَرِ ، رَبِّ أَعُوْذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ",
     transliteration: "Aṣbaḥnā wa aṣbaḥa-l-mulku li-llāh, wa-l-ḥamdu li-llāh, lā ilāha illa-llāhu waḥdahū lā sharīka lah, lahu-l-mulku wa lahu-l-ḥamd, wa huwa ʿalā kulli shay’in Qadīr, Rabbi as’aluka khayra mā fī hādha-l-yawmi wa khayra mā baʿdah, wa aʿūdhu bika min sharri mā fī hādha-l-yawmi wa sharri mā baʿdah. Rabbi aʿūdhu bika mina-l-kasali wa sū’i-l-kibar, Rabbi aʿūdhu bika min ʿadhābin fi-n-nāri wa ʿadhābin fi-l-qabr.",
@@ -128,7 +128,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 13 ,
+    id: 14 ,
     title: "Ask Allah to Bless Your Day",
     arabic: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلّٰهِ رَبِّ الْعَالَمِيْنَ ، اَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ خَيْرَ هٰذَا الْيَوْمِ ، فَتْحَهُ وَنَصْرَهُ وَنُوْرَهُ وَبَرَكَتَهُ وَهُدَاهُ ، وَأَعُوْذُ بِكَ مِنْ شَرِّ مَا فِيْهِ وَشَرِّ مَا بَعْدَهُ",
     transliteration: "Aṣbaḥnā wa aṣbaḥa-l-mulku li-llāhi Rabbi-l-ʿālamīn, Allāhumma innī as’aluka khayra hādha-l-yawm, fatḥahū wa naṣrahū wa nūrahū wa barakatahū wa hudāh, wa aʿūdhu bika min sharri mā fīhi wa sharri mā baʿdah.",
@@ -137,7 +137,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 14 ,
+    id: 15 ,
     title: "Get Yourself Freed from the Hell-fire (4x)",
     arabic: "اَللّٰهُمَّ إِنِّيْ أَصْبَحْتُ أُشْهِدُكَ ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ وَمَلَائِكَتَكَ وَجَمِيْعَ خَلْقِكَ ، أَنَّكَ أَنْتَ اللّٰهُ لَا إِلٰهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيْكَ لَكَ ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُوْلُكَ",
     transliteration: "Allāhumma innī aṣbaḥtu ush-hiduk, wa ush-hidu ḥamlata ʿarshik, wa malā’ikatika wa jamīʿa khalqik, an-naka Anta-llāhu lā ilāha illā Anta waḥdak, lā sharīka lak, wa anna Muḥammadan ʿabduka wa rasūluk",
@@ -146,7 +146,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 15 ,
+    id: 16 ,
     title: "Upon Entering the Morning",
     arabic: "اَللّٰهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوْتُ وَإِلَيْكَ النُّشُوْرُ",
     transliteration: "Allāhumma bika aṣbaḥnā wa bika amsaynā wa bika naḥyā wa bika namūtu wa ilayka-n-nushūr.",
@@ -155,7 +155,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 16 ,
+    id: 17 ,
     title: "Ask Allah For Good Health and Protection (3x)",
     arabic: "اَللّٰهُمَّ عَافِنِيْ فِيْ بَدَنِيْ ، اَللّٰهُمَّ عَافِنِيْ فِيْ سَمْعِيْ ، اَللّٰهُمَّ عَافِنِيْ فِيْ بَصَرِيْ ، لَا إِلٰهَ إِلَّا أَنْتَ ، اَللّٰهُمَّ إِنِّيْ أَعُوْذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، وأَعُوْذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلٰهَ إِلَّا أَنْتَ",
     transliteration: "Allāhumma ʿāfinī fī badanī, Allāhumma ʿāfinī fī samʿī, Allāhumma ʿāfinī fī baṣarī, lā ilāha illā Ant, Allāhumma innī aʿūdhu bika mina-l-kufri wa-l-faqr, wa aʿūdhu bika min ʿadhābi-l-qabr, lā ilāha illā Ant.",
@@ -164,7 +164,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 17 ,
+    id: 18 ,
     title: "Allah Will Suffice You in Everything (7x)",
     arabic: "حَسْبِيَ اللّٰهُ لَا إِلٰهَ إِلَّا هُوَ ، عَلَيْهِ تَوَكَّلْتُ ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيْمِ",
     transliteration: "Ḥasbiya-Allāhu lā ilāha illā Huwa, ʿalayhi tawakkaltu, wa Huwa Rabbu-l-ʿArshi-l-ʿaẓīm.",
@@ -173,7 +173,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 18 ,
+    id: 19 ,
     title: "Have the Prophet ﷺ Hold Your Hand and Admit You to Paradise (3x)",
     arabic: "رَضِيْتُ بِاللّٰهِ رَبًّا ، وَبِالْإِسْلَامِ دِيْنًا ، وَبِمُحَمَّدٍ نَّبِيًّا",
     transliteration: "Raḍītu bi-llāhi Rabbā, wa bi-l-islāmi dīnā, wa bi Muḥammadin-Nabiyyā.",
@@ -182,7 +182,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 19 ,
+    id: 20 ,
     title: "Protect Yourself From All Harm (3x)",
     arabic: "بِسْمِ اللّٰهِ الَّذِيْ لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ ، وَهُوَ السَّمِيْعُ الْعَلِيْمُ",
     transliteration: "Bismi-llāhi-lladhī lā yaḍurru maʿasmihi shay’un fi-l-arḍi wa lā fi-s-samā’, wa Huwa-s-Samīʿu-l-ʿAlīm.",
@@ -191,7 +191,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 20 ,
+    id: 21 ,
     title: "Get Your Sins Forgiven (100x)",
     arabic: "سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ",
     transliteration: "Subḥāna-llāhi wa bi ḥamdih.",
@@ -200,7 +200,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 21 ,
+    id: 22 ,
     title: "An Uparallel Reward (100x)",
     arabic: "لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيْكَ لَهُ ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيْرٌ.",
     transliteration: "Lā ilāha illā-Allāh, waḥdahū lā sharīka lah, lahu-l-mulk, wa lahu-l-ḥamd, wa Huwa ʿalā kulli shay’in Qadīr.",
@@ -209,7 +209,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 22 ,
+    id: 23 ,
     title: "Receive the Intercession of the Prophet ﷺ (100x)",
     arabic: "الصلاة على النبي (اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ اٰلِ مُحَمَّدٍ ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيْمَ وَعَلَىٰ اٰلِ إِبْرَاهِيْمَ ، إِنَّكَ حَمِيْدٌ مَّجِيْدٌ ، اَللّٰهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ اٰلِ مُحَمَّدٍ ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيْمَ وَعَلَىٰ اٰلِ إِبْرَاهِيْمَ ، إِنَّكَ حَمِيْدٌ مَّجِيْدٌ)",
     transliteration: "Allāhumma ṣalli ʿalā Muḥammad wa ʿalā āli Muḥammad, kamā ṣallayta ʿalā Ibrāhīma wa ʿalā āli Ibrāhīm, innaka Ḥamīdu-m-Majīd, Allāhumma bārik ʿalā Muḥammad, wa ʿalā āli Muḥammad, kamā bārakta ʿalā Ibrāhīma wa ʿalā āli Ibrāhīm, innaka Ḥamīdu-m-Majīd",
@@ -218,7 +218,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 23 ,
+    id: 24 ,
     title: "Seek Forgiveness and Repent (100x)",
     arabic: "أَسْتَغْفِرُ اللّٰهَ وَأَتُوْبُ إِلَيْهِ",
     transliteration: "Astaghfiru-l-llāha wa atūbu ilayh.",
@@ -227,7 +227,7 @@ const duas: Dua[] = [
 
   },
   {
-    id: 24  ,
+    id: 25  ,
     title: "4 Phrases That Outweigh All Other Dhikr (3x)",
     arabic: "سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ ، عَدَدَ خَلْقِهِ ، وَرِضَا نَفْسِهِ ، وَزِنَةَ عَرْشِهِ ، وَمِدَادَ كَلِمَاتِهِ",
     transliteration: "Subḥāna-llāhi wa bi ḥamdih, ʿadada khalqih, wa riḍā nafsih, wa zinata ʿarshih, wa midāda kalimātih.",
