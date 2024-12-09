@@ -444,15 +444,7 @@ const duas: Dua[] = [
 
 ];
 
-const DuaCard = ({
-  dua,
-  isBookmarked,
-  toggleBookmark,
-}: {
-  dua: Dua;
-  isBookmarked: boolean;
-  toggleBookmark: (id: number) => void;
-}) => (
+const DuaCard = ({ dua, isBookmarked, toggleBookmark }: { dua: Dua; isBookmarked: boolean; toggleBookmark: (id: number) => void }) => (
   <div className="p-6 bg-white rounded-lg shadow-lg border border-gray-300">
     <h2 className="text-xl font-semibold text-gray-800 mb-2">{dua.title}</h2>
     <p className="text-2xl text-gray-700 font-semibold mb-2">{dua.arabic}</p>
@@ -473,6 +465,7 @@ const DuaPage = () => {
   const [activeCategory, setActiveCategory] = useState<string>("Morning Duas");
   const [bookmarkedIds, setBookmarkedIds] = useState<number[]>([]);
   const [showBookmarks, setShowBookmarks] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     const storedBookmarks = localStorage.getItem("bookmarkedDuas");
@@ -494,7 +487,14 @@ const DuaPage = () => {
 
   const filteredDuas = showBookmarks
     ? duas.filter((dua) => bookmarkedIds.includes(dua.id))
-    : duas.filter((dua) => dua.category === activeCategory);
+    : duas.filter(
+        (dua) =>
+          dua.category === activeCategory &&
+          (dua.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            dua.arabic.includes(searchQuery) ||
+            dua.transliteration.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            dua.translation.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-200 text-gray-800">
@@ -505,7 +505,6 @@ const DuaPage = () => {
           Explore categorized duas and bookmark your favorites for quick access.
         </p>
 
-        {/* Navigation Buttons */}
         <div className="flex justify-center space-x-4 mb-6">
           <button
             onClick={() => setShowBookmarks(false)}
@@ -541,13 +540,22 @@ const DuaPage = () => {
           </button>
         </div>
 
-        {/* Dua Display Section */}
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Search for a dua..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full p-2 rounded border border-gray-300"
+          />
+        </div>
+
         <div className="space-y-6">
           {filteredDuas.length === 0 ? (
             <p className="text-center text-gray-600">
               {showBookmarks
                 ? "No bookmarked duas yet. Bookmark your favorite duas to see them here."
-                : "No duas available in this category."}
+                : "No duas found matching your search or category."}
             </p>
           ) : (
             filteredDuas.map((dua) => (
@@ -566,4 +574,3 @@ const DuaPage = () => {
 };
 
 export default DuaPage;
-
