@@ -466,13 +466,24 @@ const DuaPage = () => {
   const [bookmarkedIds, setBookmarkedIds] = useState<number[]>([]);
   const [showBookmarks, setShowBookmarks] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
 
   useEffect(() => {
     const storedBookmarks = localStorage.getItem("bookmarkedDuas");
     if (storedBookmarks) {
       setBookmarkedIds(JSON.parse(storedBookmarks));
     }
+
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300); // Show button after 300px scroll
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
 
   const toggleBookmark = (id: number) => {
     const updatedBookmarks = bookmarkedIds.includes(id)
@@ -495,6 +506,9 @@ const DuaPage = () => {
             dua.transliteration.toLowerCase().includes(searchQuery.toLowerCase()) ||
             dua.translation.toLowerCase().includes(searchQuery.toLowerCase()))
       );
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-200 text-gray-800">
@@ -569,6 +583,14 @@ const DuaPage = () => {
           )}
         </div>
       </div>
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-10 right-10 bg-teal-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-teal-700"
+        >
+          ↑ Back to Top
+        </button>
+      )}
     </div>
   );
 };
